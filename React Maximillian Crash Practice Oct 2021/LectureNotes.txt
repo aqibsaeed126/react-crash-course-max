@@ -1,0 +1,312 @@
+// React Basics
+React is JS based Client Side UI Library
+Helps make modern interactive UIs
+Only JS vs React
+ToDo list example of JS vs React
+all custom html , listeners, handlers, overlays etc.. much code
+app become complex if more than To-Do with only JS
+
+// Imperative vs Declarative
+Writing steps as steps , make sure of each detail is imperative Approach
+Same example with React, easy to write and maintanable which is Declarative Component based Approach
+
+// SPA in React
+React can be used on part of webpage or whole web page using SPA
+no new html will be loaded in SPA.
+Netflix page is an example
+
+// React Alternatives
+React FOcused on UI mainly
+Rest things like router , forms are using community pkgs
+Alternatives are Angular full fledge framework
+Vue is combination of both, features are b/w angular and React
+
+// React 1st Project
+Project structure is complex as compared to JS
+Build steps to make it understandable to browser
+We also need development server to run on local
+Also for local auto reload
+You need Node JS to run JS code outside browser, to compile JS, to use packages etc..
+Npm is tool to install packages globally and locally both so you have to take care for pollution in long term.
+Npx is tool use to execute packages even without installing so you are saving disk space. not polluting directory. You can also run directly git hub code packages. npx cowsay wow.
+Run command -> npx create-react-app react-crash-practice
+It will install all related packages and create react app with directory structure for you
+Run Command in folder -> npm start
+It runs a script mentioned in package.json and run dev server
+Open your project in Browser with sample react application UI
+
+// Set Code Editor
+Download VSCode
+Change themes
+Install Extensions like prettier , add from preference settings
+Option+Shift+F to autoformat your file
+
+// Cleanup Project
+Remove Extra files like app.test.js,logo.svg,reportWebVitals, setupTests.js etc..
+We need mainly App.js, index.css, index.js
+Remove Unusuall Imports and update main App Component
+
+// Package.json
+3rd party packages mentioned in package.json
+list all dependencies of project
+react + react-dom + react-scripts are dependencies installed with create-react-app
+We can use dependencies directly importing into our js , html files like react, reactDom
+scripts in package.json like start, build , test run react scripts to start or build project
+convert it to html,js to understand by browser
+Run npm i , install all dependencies and store in node_modules
+
+// How react works and Components - Folder Structure 
+3 main files
+index.html -> main app file contain id app Div
+App.js     -> Main App top level react component
+index.js   -> Render App component in html div root using reactDOM Library. installed by package.json
+React.StrictMode is tool for highlight problems in react app. highlight warning and issues. only for dev environment. not for prods
+JSX -> Javascript and XML , syntax used in react to combine html+JS code. Understand by react in React-DOM Library
+Component -> just export function returning JSX code
+We dont see App component selector in browser DOM
+Default export help you to import by any name
+default export , export any single function,object in file
+
+// Todo App - More about Component and Styling 
+Update App component code to basic todo title and delete button
+Copy CSS in index.css file
+Add class in component JSX
+some attributes are not same as html. So we use className instead of class
+create separate ToDo component
+Component name should be capital start
+create componentFolder and paste new todo component in it. import in app component and use its selector :)
+We can have self closing tag for components , but can be closing tag as well if properties are there
+
+// Props and Dynamic Content
+Currently hardcode data in todos
+We want dynamic. Pass data into components from parent to child
+Use Props in function component as param and use in child todo component
+Props is object and properties as passed input data
+Use dynamic component as {props.title} syntax , as template code syntax
+Expression works but not if else while code
+
+
+// TO BE CONtinued . . . . . . . . . . .
+// Handling Events
+Now we need to click delete button using react declarative Approach
+add click listener in button
+syntax is onClick={deleteHandler} , not executable like angular. because react behave this way and execute when teplate render if we put ().
+
+// Adding Overlay Modal and backdrop Component
+create overlay and backdrop component to show modal and blur background too.
+add JSX of modal with cancel and sure button
+add div with class backdrop in backdrop component
+div can also be self closing in JSX
+Add Modal and BAckdrop in app component at bottom
+
+// Introducing state in components
+Nice article -> https://academind.com/tutorials/what-is-state
+State is current data in component.
+React Hooks introduced in React 16.8 , let you use state without using class components
+Hook is special function let you hook into react feature, like you add react state to function components.
+useState Hook inside component method , pass initial value , and it return data and setMethod
+https://reactjs.org/docs/hooks-state.html
+Its equivalent code in class component is to use this.state = {} and then setState to set new data and rerender :p ;)
+in function component , we have no 'this'.
+useState return array with 2 members, data and method to set data.
+Move Modal and backdrop to Todo component now to maintain states and show only when delete is clicked
+
+// Event Props
+Open a delete dialog and overlay, we want to close that modal as well
+Inside Modal component , handle delete and confirm button events , ALso for backdrop component
+Same as work like @output in angular, custom event from child to parent
+Handle using props event, when called function register in parent will get called
+2 events props for Modal.
+
+// Routing
+Page never reloads. no new html
+Only route change , and render new components using route
+install react-router-dom package using npm i
+entry added in package.json
+create components and pages folder
+create 3 components JS files inside pages, favourite, all meetups , and New meetups
+Go to index.js, import BrowserRouter component and wrap it around App component.
+In App components , Define different routes and define component against it, using import Router from react router DOM
+use syntax like 
+<Route path='/'>
+  <AllMeetupsPage />
+</Route>
+component against each route.
+few properties are important for exact path match. path loads based on if path start with mentioned route
+every path match will check like multiple ifs
+use of Switch around routes will make sure to render only one route 
+But problem is it will match 1st default path in every className
+Use exact props as true or either exxact , to make sure exact path match
+<Route path="/" exact> syntax
+
+// Navigation and Routing
+Create Navigation component and add navigation links in this component
+use anchor and href is not good option , because it will reload the page
+import <Link> component from router Library and use to props to define routes
+syntax is <Link to='/'>All Meetups</Link>
+and use this navigation component in app component.
+
+// CSS Modules
+currently all css in index.css for whole app
+separate css files for every component
+encapsulate css scope for each component
+create file as component.module.css and define all styles there
+import all style as in any variable name object like import classes from './MainNavigation.module.css'
+and use classes as className={classes.header}
+This way style encap for component we do in react
+
+// All Meetup pages List view
+create dumy data consts
+we can use this syntax to show static data in JSX {[<li>Item1</li>, <li>Item2</li>]}
+use map to show dynamic array component and return data from it
+There is error on console while showing list dynamic data, that list should have unique key prop , req by react. use ids as keys to avoid error
+
+// Adding more sub components for list and single meetup to use
+Create meetup folder and create meetup item and list components
+Copy and use css module files and add classes in JSX
+use list item card structure in Meetupitem, use item component inside MeetupList and use LIst inside All Meetups
+
+// Content Projection in React using props.children
+Create a parent global general component
+act as wrapper and use behaviour to all internal html/component
+create Card.js and module css file under UI folder
+card layout , separate list item
+
+// COntent projection - Layout component that sets width of each item
+create Layouut wrapper component and use Main navigation inside it and rest of dynamic selected route component using content projection
+
+// Adding a forms
+Create form to add new meetups for dynamic saved data in DB
+Create new meetup component and use in newMeetup componnent.
+Copy css for form and paste in module css file
+Write form JSX , wrap around card wrapper component. add relevant input types like text, url, textarea, add label
+label for property cant used, so use it HtmlFor like we use className
+use button to submit form, use html <form>
+
+// Handle form submission and User Inputs
+We need to do 2 things
+1- to prevent browser default behaviour to submit form to server and send http request
+2- read user inputs on submission
+
+for 1st use prevent default
+for 2nd use refs :p
+
+when submit button clicked , listen it using onSubmit event on form, andn write submit handler
+use e.preventDefault 
+for getting user inputs we can use useState hook to keeptrack and use onChange for each user input,
+but problem is, it will be updated on every keystroke which is not good approach as we need all data onn submission only.
+So good option here is to use refs (just like angular #ref) and we use useRef to use references of DOM like @viewchild
+connnect ref to DOM using ref prop on fields
+ref={titleInputRef} , and const titleInputRef = useRef();
+titleInputRef.current.value to get value;
+set refs for all inputs , annd useRef for all. dont use current value using this ref. useState is better for it.
+import useRef from react, define all refs at main component functionn level.
+get curren.value of all inputs on submit and display on console for now.
+
+// Prepare App for Http call
+We cant connect DB directly with FE like react and angular due to security concerns and source code exposal in browser and DB credenntial expose
+So we use firebase , Google service , where we can create realtime database and fetch and save data using API endpoints
+create free account and use test account , create project, use realtime database option, rename endpoint name there.
+URL will be created for post/get/put request in firebase
+Now instead, just console.log data, pass data in API call.
+but not in MeetupForm component. pass data in parennt component using events props.
+
+// Sending a post request
+in addMeetup handler , use fetch function. we can also use axios as well.
+use URL from firebase append meetup endpoint at end in code
+it will create meetup name collection in DB and show your fetch data
+fetch API, pass URL/meetups.json and config object include method , data(using stringify), and header
+Submit form and see data inn firebase DB ;) DONE.....
+
+// Navigating programmatically on form submission
+use React router , it provide useHistory hook. import it. It exposes us different method to navigate
+fetch return promise, use success then annd use history replace method and provide URL. for now use '/'
+dont use history.push, use history.replace('/');  replace dont allow you to go back after form submission :p
+
+// Getting Starting with Fetching data
+Fetch data from firebase created API data
+in All Meetup component , currently dummy data is loading
+replace it with API call fetch method, but where to call ?
+call it in start of component function , before return JSX
+but fetch is async operation, it doesnt wait for response and render JSX immediately
+There are 2 solutions, 
+1- We can use await with fetch,but then we need to write async with component functions, which is not right and representing function is returning promise, which is not valid for a react component. it must be synchronous JS function that return JSX or TSX
+2- return JSX inside then method when data is available, which render component JSX late on every Fetch call
+
+Fine solution:
+3- Use state and display loading label JSX 
+
+Use state isLoading and set it true or false based on fetch data
+use state for meetups data and set it after then response
+=====But here is another problem===
+setState method re-rerenders component -> which make again fetch call -> again set state and re render -> again fetch call , We are in a loop
+Solution:
+Another Hook, UseEffect helps run function under certain condition
+it takes function to run and dependencies of values on which changes, you want to run the function
+empty array will run 1st time.
+Also tranform data in fetch function, from object to array of objects
+
+// Adding favourite functionality using Context API
+Now we want to add meetup to favourites. move items to favourite , also show no of favourites in navigation
+We need to manage state globally now , to share state data b/w 2 components. 
+Manage state at App level and distribute it to components where they needed. but drawback is if we have complex app. it will difficult to pass data to those components with props drilling
+We have state management solution like redux. but for simple cases react also provide context api for sharing data. built in react solution.
+Context VS Redux https://blog.isquaredsoftware.com/2021/01/context-redux-differences/#:~:text=Context%20%2B%20useReducer%20are%20React%20features,values%20or%20changes%20over%20time.
+Create store folder, create favorite context file in it
+createContext method provided by react. store in object which is React component. FavoriteContext
+create another provider component. and use createcontext returned component in it and use with .Provide keywork like this
+<FavoriteContext.Provider value={context}> {props.children}</FavoriteContext.Provider>
+useStaet hook to set state in value. so that whenever that context is changed. all components inside provider will get automatically rendered
+Initialize state with object. and update state/context with new methods addfavorites, remove favorites, isFavorites
+and use SetState method of useState hook to update
+setFavoriteMeetup(favMeetup) is fine syntax and will work, but it work asynchronously and schedule it. on updating state , there may be scenario when last state was not processed yet and new updated state is not showing
+pass function that receive previous snap shot and you return latest. this gaurantee latest snapsot always
+setFavoriteMeetup((prevState)=>{prevState.concat(favMeetup)}), Similarly do for removingfavorite meetup using id and filter.
+Expose add/remove/isFav methods as well in initialziation and  context obj provider value
+Using the context API , Wrap whole app code inside our Context component.
+Favorite context will be available inside all componets. Go to components and use data
+
+// Using Context in components
+To use context component , export it
+export provider function/component too. as well as context Object. We will need both later on.
+import function/component and wrap around app component in indx.js because it needs mostly in pages like favorites, all meetups and navigation
+In Meetup item component, there is add to favorite button. on click of this buton , we want to add that item to favorites list. and change buton text too.
+Make access to context object that contains state info and method access too.
+import in component. useContext hook by react available to access that contaxt object.
+use it like useContext(FavoriteContext) and access propeeties and methods
+use this ctx object to access methods. now add click handler to add favorite button and create toggle method. if already favorite , remoe it. otherwise add it.
+and isFav local member use it to toggle text as well.
+Fetch not working. add DUmmy data for demo facorite thing.. 
+Now we want to use contaxt in multiple components. like favorite page. list down and use favorite context and list down all favorites items
+Favorites.js , useContaxt favorites and list down using jsx and data using meetup list component and pass favrotes data from context
+set placeholder if favories are 0
+Refreshing page will remove context data and all state will be reset
+If you want to store permanently.. use browser storage.. or on server Side
+Main navigation shows total favorites. connect to context and show total favourites count :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
